@@ -1,0 +1,59 @@
+<!-- templates/recipes/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EpiRecipes Search Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .search-form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to EpiRecipes Search Platform</h1>
+        <p>Search for your favorite recipes using our powerful search engine.</p>
+        <div class="search-form">
+            <form action="{% url 'recipe-search' %}" method="get">
+                <input type="text" name="q" placeholder="Enter recipe or ingredient">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

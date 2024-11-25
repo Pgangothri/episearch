@@ -1,0 +1,72 @@
+<!-- templates/recipes/search_results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - EpiRecipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .recipe {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .recipe-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .recipe-detail {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results for "{{ query }}"</h1>
+        <p>Found {{ total }} results</p>
+        
+        {% for recipe in results %}
+            <div class="recipe">
+                <h2>{{ recipe.title }}</h2>
+                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                <p><strong>Directions:</strong> {{ recipe.directions }}</p>
+                <div class="recipe-details">
+                    <span class="recipe-detail">Rating: {{ recipe.rating|default_if_none:"N/A" }}</span>
+                    <span class="recipe-detail">Calories: {{ recipe.calories|default_if_none:"N/A" }}</span>
+                    <span class="recipe-detail">Protein: {{ recipe.protein|default_if_none:"N/A" }}g</span>
+                    <span class="recipe-detail">Fat: {{ recipe.fat|default_if_none:"N/A" }}g</span>
+                    <span class="recipe-detail">Sodium: {{ recipe.sodium|default_if_none:"N/A" }}mg</span>
+                </div>
+            </div>
+        {% empty %}
+            <p>No results found.</p>
+        {% endfor %}
+        
+        <!-- Add pagination here if needed -->
+        
+        <a href="{% url 'home' %}">Return to Home</a>
+    </div>
+</body>
+</html>
